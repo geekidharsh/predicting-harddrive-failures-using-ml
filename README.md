@@ -1,10 +1,9 @@
 # Machine Learning to Predicting Harddrive Failures 
 ### Using Backblaze dataset on Kaggle.
 
-Kaggle Project to predict Hard Drive failure using machine learning
+### About the project: 
+This was a Data Science Case Study done for Juul Labs in collaboration with McKinsey & Company. A similar dataset and project can also be found on Kaggle.com
 
-Sample Dataset: 
-https://www.kaggle.com/backblaze/hard-drive-test-data
+### Sample Dataset: 
+A sample of SMART hard drives dataset can be found and downloaded at: https://www.kaggle.com/backblaze/hard-drive-test-data
 
-
-I did this case study for Juul Labs back in December 2018
