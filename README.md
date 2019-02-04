@@ -43,7 +43,7 @@ Here's a quick overview of how this problem has been approached:
 9. Challenges with the current dataset and ways to improve it
 
 #### Tech stack:
-python, sql, pandas, scikit and other machine learning libaries, postgres
+`python, sql, pandas, scikit and other machine learning libaries, postgres`
 
 #### Sample report overview: 
 (This is Optional)
