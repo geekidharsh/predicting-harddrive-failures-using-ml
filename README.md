@@ -1,4 +1,4 @@
-# Machine Learning to Predicting Harddrive Failures 
+## Machine Learning to Predicting Harddrive Failures 
 Using Backblaze dataset on Kaggle.
 
 ### About the project: 
@@ -66,4 +66,4 @@ Here's a quick overview of how this problem has been approached:
 and more...
 
 #### About the author:
-[@geekidharsh](https://github.com/geekidharsh) : I am Data Engineer with [Merck KGaA](https://www.merckgroup.com/en) with 4+ years of experience in E-commerce, Digital Marketing and understanding quickly changing user behavior, at scale.
+[@geekidharsh](https://github.com/geekidharsh) : I am Data Engineer with 4+ years of experience in E-commerce, Digital Marketing and understanding quickly changing user behavior, at scale. I am currently working with with [Merck KGaA](https://www.merckgroup.com/en)
