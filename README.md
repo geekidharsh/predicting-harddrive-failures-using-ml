@@ -42,9 +42,8 @@ Here's a quick overview of how this problem has been approached:
 8. Conclusion
 9. Challenges with the current dataset and ways to improve it
 
-#### Sample report overview:
-#### (This is Optional)
-*In case the above embeded code for Data Studio report failed, I am including local PNG import of some of the charts.*
+#### Sample report overview: 
+(This is Optional)
 
 <table>
 <tr>
@@ -61,7 +60,7 @@ Here's a quick overview of how this problem has been approached:
 <td>4. Daily Failure Trend to determine missing failure data pattern
     <img src="graphs/daily-trend-of-fails.png" width="600"></td></tr></table>
 
+and more...
 
 #### About the author:
-[@geekidharsh](https://github.com/geekidharsh) 
-- I am Sr. Data Engineer with Merck KGaA with 4+ years of experience in E-commerce, Digital Marketing and understanding quickly changing user behavior, at scale.
+[@geekidharsh](https://github.com/geekidharsh) : I am Sr. Data Engineer with [Merck KGaA](https://www.merckgroup.com/en) with 4+ years of experience in E-commerce, Digital Marketing and understanding quickly changing user behavior, at scale.
