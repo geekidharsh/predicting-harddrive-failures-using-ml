@@ -18,6 +18,7 @@ This case study relies on a given data stream provided for this purpose. The goa
 
 The study concludes with discussing possible opportunities and challenges with existing model and features that can help design a better predictive model for future. 
 
+
 --------
 
 Here's a quick overview of how this problem has been approached: 
@@ -40,3 +41,26 @@ Here's a quick overview of how this problem has been approached:
 #### Conclusion and Improvement Ideas:
 8. Conclusion
 9. Challenges with the current dataset and ways to improve it
+
+#### Sample report overview:
+#### (This is Optional)
+*In case the above embeded code for Data Studio report failed, I am including local PNG import of some of the charts.*
+
+<table>
+<tr>
+<td> 1. Number Hard Drives per model
+<img src="graphs/hard-drives-per-model.png" width="600"> </td>
+    <td>2. Number of positive failures by model
+        <img src="graphs/failures-by-model.png" width="600"> </td></tr></table>
+        
+        
+<table>
+    <tr>
+        <td>3. Failure Trend over time
+            <img src="graphs/failure-trend-timeseries.png" width="600"></td>
+<td>4. Daily Failure Trend to determine missing failure data pattern
+    <img src="graphs/daily-trend-of-fails.png" width="600"></td></tr></table>
+
+
+#### About the author:
+@geekidharsh . I am Sr. Data Engineer with Merck KGaA with 4+ years of experience in E-commerce, Digital Marketing and understanding quickly changing user behavior, at scale.
