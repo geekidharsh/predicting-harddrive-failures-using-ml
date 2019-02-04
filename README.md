@@ -8,7 +8,7 @@ This was a Data Science Case Study done for Juul Labs in collaboration with McKi
 A sample of SMART hard drives dataset can be found and downloaded at: https://www.kaggle.com/backblaze/hard-drive-test-data
 
 ### What are SMART systems ?
-SMART features or *S.M.A.R.T. (Self-Monitoring, Analysis and Reporting Technology)* is a software monitoring system for hard drives. It is a widely used industry practice around data center management and disk heavy resources. SMART generates a collection different metrics related to help evaluate the overall health of a Hard Drive. These metrics can be specific to a certain number of manufacturers or be more general, sometimes. 
+SMART features or *S.M.A.R.T. (Self-Monitoring, Analysis and Reporting Technology)* is a software monitoring system for hard drives. SMART generates a collection different metrics related to help evaluate the overall health of a Hard Drive. 
 
 A single metrics may not always determine the exact failure prediction but are commonly accepted to help identify any imminent failure and help handle the backup and restore, in time. 
 
@@ -22,21 +22,21 @@ The study concludes with discussing possible opportunities and challenges with e
 
 Here's a quick overview of how this problem has been approached: 
 
-### Extraction and Load
+#### Extraction and Load
 1. Connect to the postgres server.
 2. Download the dataset offline
 
-### Transform
+#### Transform
 3. Wrangle and explore
 4. Change Dimentions, clean and slice and dice
 
-### Analyze
+#### Analyze
 5. Analyze dataset, plot most significant trends
 
-### Predict:
+#### Predict:
 6. Feature Selection
 7. Model and predict
 
-### Conclusion and Improvement Ideas:
+#### Conclusion and Improvement Ideas:
 8. Conclusion
 9. Challenges with the current dataset and ways to improve it
