@@ -1,0 +1,169 @@
+Attribute name,Ideal,!,Description
+Reallocated Sectors Count,Low,Critical,"Count of reallocated sectors. The raw value represents a count of the bad sectors that have been found and remapped.[25] Thus, the higher the attribute value, the more sectors the drive has had to reallocate. This value is primarily used as a metric of the life expectancy of the drive; a drive which has had any reallocations at all is significantly more likely to fail in the immediate months.[22][26]"
+,Lower,[22][23][24],
+Spin Retry Count,Low,Critical,Count of retry of spin start attempts. This attribute stores a total count of the spin start attempts to reach the fully operational speed (under the condition that the first attempt was unsuccessful). An increase of this attribute value is a sign of problems in the hard disk mechanical subsystem.
+,Lower,,
+End-to-End error / IOEDC ,Low,Critical,"This attribute is a part of Hewlett-Packard's SMART IV technology, as well as part of other vendors' IO Error Detection and Correction schemas, and it contains a count of parity errors which occur in the data path to the media via the drive's cache RAM.[41]"
+,Lower,,
+Reported Uncorrectable Errors,Low,Critical,The count of errors that could not be recovered using hardware ECC (see attribute 195).[42]
+,Lower,,
+Reallocation Event Count[45],Low,Critical,Count of remap operations. The raw value of this attribute shows the total count of attempts to transfer data from reallocated sectors to a spare area. Both successful and unsuccessful attempts are counted.[57]
+,Lower,,
+Current Pending Sector Count[45],Low,Critical,"Count of ""unstable"" sectors (waiting to be remapped, because of unrecoverable read errors). If an unstable sector is subsequently read successfully, the sector is remapped and this value is decreased. Read errors on a sector will not remap the sector immediately (since the correct value cannot be read and so the value to remap is not known, and also it might become readable later); instead, the drive firmware remembers that the sector needs to be remapped, and will remap it the next time it's written.[58]"
+,Lower,[4][40][43],"However, some drives will not immediately remap such sectors when written; instead the drive will first attempt to write to the problem sector and if the write operation is successful then the sector will be marked good (in this case, the ""Reallocation Event Count"" (0xC4) will not be increased). This is a serious shortcoming, for if such a drive contains marginal sectors that consistently fail only after some time has passed following a successful write operation, then the drive will never remap these problem sectors."
+(Offline) Uncorrectable Sector Count[45],Low,Critical,The total count of uncorrectable errors when reading/writing a sector. A rise in the value of this attribute indicates defects of the disk surface and/or problems in the mechanical subsystem.[4][43][40]
+,Lower,[4][22],
+Soft Read Error Rateor,Low,Critical,Count indicates the number of uncorrectable software read errors.[61]
+TA Counter Detected,Lower,,
+Read Error Rate,Low,,(Vendor specific raw value.) Stores data related to the rate of hardware read errors that occurred when reading data from a disk surface. The raw value has different structure for different vendors and is often not meaningful as a decimal number.
+,Lower,,
+Spin-Up Time,Low,,Average time of spindle spin up (from zero RPM to fully operational [milliseconds]).
+,Lower,,
+Soft Read Error Rate,Low,,Uncorrected read errors reported to the operating system.
+,Lower,,
+Program Fail Count Total or Non-4K Aligned Access Count,Low,,Total number of Flash program operation failures since the drive was deployed.[36]
+,Lower,,"Number of user data accesses (both reads and writes) where LBAs are not 4 KiB aligned (LBA % 8 != 0) or where size is not modulus 4 KiB (block count != 8), assuming logical block size (LBS) = 512 B.[37]"
+SATA Downshift Error Count or Runtime Bad Block,Low,,"Western Digital, Samsung or Seagate attribute: Either the number of downshifts of link speed (e.g. from 6Gbps to 3Gbps) or the total number of data blocks with detected, uncorrectable errors encountered during normal operation.[38] Although degradation of this parameter can be an indicator of drive aging and/or potential electromechanical problems, it does not directly indicate imminent drive failure.[39]"
+,Lower,,
+High Fly Writes,Low,,"HDD manufacturers implement a flying height sensor that attempts to provide additional protections for write operations by detecting when a recording head is flying outside its normal operating range. If an unsafe fly height condition is encountered, the write process is stopped, and the information is rewritten or reallocated to a safe region of the hard drive. This attribute indicates the count of these errors detected over the lifetime of the drive."
+,Lower,,"This feature is implemented in most modern Seagate drives[2] and some of Western Digital's drives, beginning with the WD Enterprise WDE18300 and WDE9180 Ultra2 SCSI hard drives, and will be included on all future WD Enterprise products.[44]"
+G-sense Error Rate,Low,,The count of errors resulting from externally induced shock and vibration.
+,Lower,,
+"Power-off Retract Count, Emergency Retract Cycle Count(Fujitsu),[45] or Unsafe Shutdown Count",Low,,Number of power-off or emergency retract cycles.[17][46]
+,Lower,,
+Load Cycle Count or Load/Unload Cycle Count (Fujitsu),Low,,Count of load/unload cycles into head landing zone position.[45] Some drives use 225 (0xE1) for Load Cycle Count instead.
+,Lower,,"Western Digital rates their VelociRaptor drives for 600,000 load/unload cycles,[47] and WD Green drives for 300,000 cycles;[48] the latter ones are designed to unload heads often to conserve power. On the other hand, the WD3000GLFS (a desktop drive) is specified for only 50,000 load/unload cycles.[49]"
+,,,"Some laptop drives and ""green power"" desktop drives are programmed to unload the heads whenever there has not been any activity for a short period, to save power.[50][51] Operating systems often access the file system a few times a minute in the background,[52] causing 100 or more load cycles per hour if the heads unload: the load cycle rating may be exceeded in less than a year.[53] There are programs for most operating systems that disable the Advanced Power Management (APM) and Automatic acoustic management (AAM) features causing frequent load cycles.[54][55]"
+Temperature or Temperature Celsius,Low,,"Indicates the device temperature, if the appropriate sensor is fitted. Lowest byte of the raw value contains the exact temperature value (Celsius degrees).[56]"
+,Lower,,
+UltraDMA CRC Error Count,Low,,The count of errors in data transfer via the interface cable as determined by ICRC (Interface Cyclic Redundancy Check).
+,Lower,,
+Multi-Zone Error Rate [59],Low,,"The count of errors found when writing a sector. The higher the value, the worse the disk's mechanical condition is."
+,Lower,,
+Write Error Rate(Fujitsu),Low,,The total count of errors when writing a sector.[60]
+,Lower,,
+Data Address Mark errors or,Low,,Count of Data Address Mark errors (or vendor-specific).[17]
+TA Counter Increased,Lower,,
+Run Out Cancel,Low,,The number of errors caused by incorrect checksum during the error correction.
+,Lower,,
+Thermal Asperity Rate,Low,,Count of errors due to high temperature.[62]
+,Lower,,
+Spin High Current,Low,,Amount of surge current used to spin up the drive.[62]
+,Lower,,
+Disk Shift,Low,,Distance the disk has shifted relative to the spindle (usually due to shock or temperature). Unit of measure is unknown.[33]
+,Lower,,
+G-Sense Error Rate,Low,,The count of errors resulting from externally induced shock and vibration.
+,Lower,,
+Load Friction,Low,,Resistance caused by friction in mechanical parts while operating.[33]
+,Lower,,
+Load/Unload Cycle Count,Low,,Total count of load cycles[33] Some drives use 193 (0xC1) for Load Cycle Count instead. See Description for 193 for significance of this number.
+,Lower,,
+Torque Amplification Count,Low,,Count of attempts to compensate for platter speed variations.[66]
+,Lower,,
+Power-Off Retract Cycle,Low,,"The number of power-off cycles which are counted whenever there is a ""retract event"" and the heads are loaded off of the media such as when the machine is powered down, put to sleep, or is idle.[17][46]"
+,Lower,,
+Read Error Retry Rate,Low,,Count of errors while reading from a disk.[33]
+,Lower,,
+Free Fall Protection,Low,,"Count of ""Free Fall Events"" detected.[77]"
+,Lower,,
+Command Timeout,Lower,Critical,The count of aborted operations due to HDD timeout. Normally this attribute value should be equal to zero.[43]
+,Low,[43],
+Recalibration Retries or Calibration Retry Count,Lower,,This attribute indicates the count that recalibration was requested (under the condition that the first attempt was unsuccessful). An increase of this attribute value is a sign of problems in the hard disk mechanical subsystem.
+,Low,,
+Soft ECC Correction,Lower,,Count of errors corrected by the internal error correction software.[17]
+,Low,,
+Throughput Performance,Higher,,Overall (general) throughput performance of a hard disk drive. If the value of this attribute is decreasing there is a high probability that there is a problem with the disk.
+,High,,
+Seek Time Performance ,Higher,,"Average performance of seek operations of the magnetic heads. If this attribute is decreasing, it is a sign of problems in the mechanical subsystem."
+,High,,
+Start/Stop Count,,,"A tally of spindle start/stop cycles. The spindle turns on, and hence the count is increased, both when the hard disk is turned on after having before been turned entirely off (disconnected from power source) and when the hard disk returns from having previously been put to sleep mode.[21]"
+,,,
+Read Channel Margin,,,Margin of a channel while reading data. The function of this attribute is not specified.
+,,,
+Seek Error Rate,Varies,,"(Vendor specific raw value.) Rate of seek errors of the magnetic heads. If there is a partial failure in the mechanical positioning system, then seek errors will arise. Such a failure may be due to numerous factors, such as damage to a servo, or thermal widening of the hard disk. The raw value has different structure for different vendors and is often not meaningful as a decimal number."
+,,,
+Power-On Hours,,,"Count of hours in power-on state. The raw value of this attribute shows total count of hours (or minutes, or seconds, depending on manufacturer) in power-on state.[27]"
+,,,"""By default, the total expected lifetime of a hard disk in perfect condition is defined as 5 years (running every day and night on all days). This is equal to 1825 days in 24/7 mode or 43800 hours.""[28]"
+,,,"On some pre-2005 drives, this raw value may advance erratically and/or ""wrap around"" (reset to zero periodically).[29]"
+Power Cycle Count,,,This attribute indicates the count of full hard disk power on/off cycles.
+,,,
+Current Helium Level,,,Specific to He8 drives from HGST. This value measures the helium inside of the drive specific to this manufacturer. It is a pre-fail attribute that trips once the drive detects that the internal environment is out of specification.[31]
+,,,
+Available Reserved Space,,,See attribute E8.[32]
+,,,
+SSD Program Fail Count,,,(Kingston) The total number of flash program operation failures since the drive was deployed.[33]Identical to attribute 181.
+,,,
+SSD Erase Fail Count,,,(Kingston) Counts the number of flash erase failures. This attribute returns the total number of Flash erase operation failures since the drive was deployed. This attribute is identical to attribute 182.
+,,,
+SSD Wear Leveling Count,,,Counts the maximum worst erase count on any block.
+,,,
+Unexpected power loss count,,,"Also known as ""Power-off Retract Count"" per conventional HDD terminology. Raw value reports the number of unclean shutdowns, cumulative over the life of an SSD, where an ""unclean shutdown"" is the removal of power without STANDBY IMMEDIATE as the last command (regardless of PLI activity using capacitor power). Normalized value is always 100.[34]"
+,,,
+Power Loss Protection Failure,,,"Last test result as microseconds to discharge cap, saturated at its maximum value. Also logs minutes since last test and lifetime number of tests. Raw value contains the following data:"
+,,,"Bytes 0-1: Last test result as microseconds to discharge cap, saturates at max value. Test result expected in range 25 <= result <= 5000000, lower indicates specific error code."
+,,,"Bytes 2-3: Minutes since last test, saturates at max value."
+,,,"Bytes 4-5: Lifetime number of tests, not incremented on power cycle, saturates at max value."
+,,,"Normalized value is set to one on test failure or 11 if the capacitor has been tested in an excessive temperature condition, otherwise 100.[34]"
+Erase Fail Count,,,S.M.A.R.T. parameter indicates a number of flash erase command failures.[35]
+,,,
+Wear Range Delta,,,Delta between most-worn and least-worn Flash blocks. It describes how good/bad the wearleveling of the SSD works on a more technical way.
+,,,
+Used Reserved Block Count Total,,,"""Pre-Fail"" attribute used at least in Samsung devices."
+,,,
+Unused Reserved Block Count Total,,,"""Pre-Fail"" attribute used at least in HP devices."
+,,,
+Erase Fail Count,,,"""Pre-Fail"" Attribute used at least in Samsung devices."
+,,,
+Head Stability,,,Western Digital attribute.
+,,,
+Induced Op-Vibration Detection,,,Western Digital attribute.
+,,,
+Temperature Difference or Airflow Temperature,Varies,,"Value is equal to (100-temp. °C), allowing manufacturer to set a minimum threshold which corresponds to a maximum temperature. This also follows the convention of 100 being a best-case value and lower values being undesirable. However, some older drives may instead report raw Temperature (identical to 0xC2) or Temperature minus 50 here."
+,,,
+Hardware ECC Recovered,Varies,,(Vendor-specific raw value.) The raw value has different structure for different vendors and is often not meaningful as a decimal number.
+,,,
+Flying Height,,,"Height of heads above the disk surface. If too low, head crash is more likely; if too high, read/write errors are more likely.[17][63]"
+,,,
+Spin Buzz,,,Count of buzz routines needed to spin up the drive due to insufficient power.[62]
+,,,
+Offline Seek Performance,,,Drive’s seek performance during its internal tests.[62]
+,,,
+Vibration During Write,,,Found in Maxtor 6B200M0 200GB and Maxtor 2R015H1 15GB disks.
+,,,
+Vibration During Write,,,A recording of a vibration encountered during write operations.[64]
+,,,
+Shock During Write,,,A recording of shock encountered during write operations.[33][65]
+,,,
+Loaded Hours,,,Time spent operating under data load (movement of magnetic head armature).[33]
+,,,
+Load/Unload Retry Count,,,Count of times head changes position.[33]
+,,,
+Load 'In'-time,,,Total time of loading on the magnetic heads actuator (time not spent in parking area).[33]
+,,,
+"GMR Head Amplitude (magnetic HDDs), Drive Life Protection Status(SSDs)",,,"Amplitude of ""thrashing"" (repetitive head moving motions between operations).[17][67]"
+,,,"In solid-state drives, indicates whether usage trajectory is outpacing the expected life curve[68]"
+Life Left (SSDs) or Temperature,,,"Indicates the approximate SSD life left, in terms of program/erase cycles or available reserved blocks.[68] A normalized value of 100 represents a new drive, with a threshold value at 10 indicating a need for replacement. A value of 0 may mean that the drive is operating in read-only mode to allow data recovery.[69]"
+,,,Previously (pre-2010) occasionally used for Drive Temperature (more typically reported at 0xC2). 
+Endurance Remaining or Available Reserved Space,,,Number of physical erase cycles completed on the SSD as a percentage of the maximum physical erase cycles the drive is designed to endure.
+,,,Intel SSDs report the available reserved space as a percentage of the initial reserved space.
+Media Wearout Indicator (SSDs) or Power-On Hours,,,"Intel SSDs report a normalized value from 100, a new drive, to a minimum of 1. It decreases while the NAND erase cycles increase from 0 to the maximum-rated cycles."
+,,,Previously (pre-2010) occasionally used for Power-On Hours (more typically reported in 0x09).
+Average erase count AND Maximum Erase Count,,,Decoded as: byte 0-1-2 = average erase count (big endian) and byte 3-4-5 = max erase count (big endian).[70]
+,,,
+Good Block Count AND System(Free) Block Count,,,Decoded as: byte 0-1-2 = good block count (big endian) and byte 3-4 = system (free) block count.
+,,,
+Head Flying Hoursor 'Transfer Error Rate' (Fujitsu),,,Time spent during the positioning of the drive heads.[17][71] Some Fujitsu drives report the count of link resets during a data transfer.[72]
+,,,
+Total LBAs Written,,,Total count of LBAs written.
+,,,
+Total LBAs Read,,,Total count of LBAs read.
+,,,Some S.M.A.R.T. utilities will report a negative number for the raw value since in reality it has 48 bits rather than 32.
+Total LBAs Written Expanded,,,The upper 5 bytes of the 12-byte total number of LBAs written to the device. The lower 7 byte value is located at attribute 0xF1.[73]
+,,,
+Total LBAs Read Expanded,,,The upper 5 bytes of the 12-byte total number of LBAs read from the device. The lower 7 byte value is located at attribute 0xF2.[74]
+,,,
+NAND Writes (1GiB),,,Total NAND Writes. Raw value reports the number of writes to NAND in 1 GB increments.[75]
+,,,
+Minimum Spares Remaining,,,The Minimum Spares Remaining attribute indicates the number of remaining spare blocks as a percentage of the total number of spare blocks available.[76]
+,,,
+Newly Added Bad Flash Block,,,The Newly Added Bad Flash Block attribute indicates the total number of bad flash blocks the drive detected since it was first initialized in manufacturing.[76]

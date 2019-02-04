@@ -1,0 +1,1604 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Predicting Hard Drive Failure - A Juul Labs Case Study}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \subsection{Predicting Hard Drive Failures Using SMART
+Metrics}\label{predicting-hard-drive-failures-using-smart-metrics}
+
+\subsubsection{\texorpdfstring{ - A Juul Labs Case
+Study}{   - A Juul Labs Case Study}}\label{a-juul-labs-case-study}
+
+\begin{verbatim}
+                        - by Harshvardhan Pandey | Jan 09 2019
+\end{verbatim}
+
+    \subsubsection{What are SMART systems ?}\label{what-are-smart-systems}
+
+SMART features or \emph{S.M.A.R.T. (Self-Monitoring, Analysis and
+Reporting Technology)} is a software monitoring system for hard drives.
+It is a widely used industry practice around data center management and
+disk heavy resources. SMART generates a collection different metrics
+related to help evaluate the overall health of a Hard Drive. These
+metrics can be specific to a certain number of manufacturers or be more
+general, sometimes.
+
+A single metrics may not always determine the exact failure prediction
+but are commonly accepted to help identify any imminent failure and help
+handle the backup and restore, in time.
+
+\subsubsection{About this case study :}\label{about-this-case-study}
+
+This case study relies on a given data stream provided for this purpose.
+The goal of this case study is to try and analyze given data and find
+out meaningful information that can help determine drives failure trends
+and different factors that may idicate if a drive would fail, and
+attempt to propose a more data driven answer to future failures based on
+SMART metrics.
+
+The study concludes with discussing possible opportunities and
+challenges with existing model and features that can help design a
+better predictive model for future.
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+Here's a quick look of how this problem has been approached:
+
+\subsubsection{Extraction and Load}\label{extraction-and-load}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Connect to the postgres server.
+\item
+  Download the dataset offline
+\end{enumerate}
+
+\subsubsection{Transform}\label{transform}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Wrangle and explore
+\item
+  Change Dimentions, clean and slice and dice
+\end{enumerate}
+
+\subsubsection{Analyze}\label{analyze}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Analyze dataset, plot most significant trends
+\end{enumerate}
+
+\subsubsection{Predict:}\label{predict}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Feature Selection
+\item
+  Model and predict
+\end{enumerate}
+
+\subsubsection{Conclusion and Improvement
+Ideas:}\label{conclusion-and-improvement-ideas}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{7}
+\tightlist
+\item
+  Conclude
+\item
+  Challenges with the current dataset and ways to improve it
+\end{enumerate}
+
+    \begin{longtable}[]{@{}l@{}}
+\toprule
+\begin{minipage}[t]{0.15\columnwidth}\raggedright\strut
+\#\# Extraction and Load\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.15\columnwidth}\raggedright\strut
+1. Connect to the postgres server\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{itemize}
+\tightlist
+\item
+  I'll begin by importing libraries to connect to postgres and download
+  the dataset offline.
+\item
+  I will create a few database utility funtion get the table data and
+  columns
+\item
+  next up, I will use pandas to join columns and dataset and transform
+  incoming data into a pandas dataframe.
+\item
+  Lastly I will save the data locally in a csv format.
+\end{itemize}
+
+Next up, I will beging wrangling and exploring the data to understand
+different attributes that will be used later on in analysis.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}72}]:} \PY{k+kn}{import} \PY{n+nn}{psycopg2}
+         \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+         \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+         \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+         \PY{k+kn}{from} \PY{n+nn}{sklearn} \PY{k}{import} \PY{n}{ensemble}\PY{p}{,} \PY{n}{metrics}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{} postgres database utility functions}
+         \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}}
+         
+         \PY{c+c1}{\PYZsh{} db connection object generator}
+         \PY{k}{def} \PY{n+nf}{postgres\PYZus{}db\PYZus{}connection}\PY{p}{(}\PY{p}{)}\PY{p}{:} 
+             \PY{c+c1}{\PYZsh{} postgresql://35.230.114.237\PYZdq{}, \PYZdq{}postgres\PYZdq{}, \PYZdq{}luuj\PYZdq{}}
+             \PY{n}{conn} \PY{o}{=} \PY{n}{psycopg2}\PY{o}{.}\PY{n}{connect}\PY{p}{(}\PY{n}{host}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{35.230.114.237}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{dbname}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{postgres}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} 
+             \PY{n}{user}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{candidate}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{password}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{luuj}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Connecting to postgresql server...}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{cur} \PY{o}{=} \PY{n}{conn}\PY{o}{.}\PY{n}{cursor}\PY{p}{(}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Successfully connected to the host}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{k}{return} \PY{n}{cur}
+         
+         
+         \PY{k}{def} \PY{n+nf}{get\PYZus{}all\PYZus{}tables}\PY{p}{(}\PY{n}{cur}\PY{p}{)}\PY{p}{:}
+         	\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Extracting list of tables:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         	\PY{n}{cur}\PY{o}{.}\PY{n}{execute}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{SELECT * FROM pg\PYZus{}catalog.pg\PYZus{}tables where schemaname NOT IN (}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{pg\PYZus{}catalog}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{, }\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{information\PYZus{}schema}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         	\PY{n}{tables} \PY{o}{=} \PY{n}{cur}\PY{o}{.}\PY{n}{fetchall}\PY{p}{(}\PY{p}{)}
+         	\PY{n}{t} \PY{o}{=} \PY{p}{[}\PY{n}{i}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{tables}\PY{p}{]}
+         	\PY{k}{return} \PY{n}{t}
+         
+         
+         \PY{k}{def} \PY{n+nf}{lookup\PYZus{}a\PYZus{}table}\PY{p}{(}\PY{n}{cur}\PY{p}{,} \PY{n}{tablename}\PY{p}{)}\PY{p}{:}
+         	\PY{c+c1}{\PYZsh{} get data from a given table: tablename}
+         	\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Reading table: }\PY{l+s+s2}{\PYZdq{}}\PY{o}{+}\PY{n}{tablename}\PY{o}{+}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{...}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{} cur.execute(\PYZsq{}SELECT * from \PYZsq{}+tablename+\PYZsq{} limit 10\PYZsq{})}
+         
+         	\PY{c+c1}{\PYZsh{} get table\PYZus{}data}
+         	\PY{n}{cur}\PY{o}{.}\PY{n}{execute}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{SELECT * from }\PY{l+s+s2}{\PYZdq{}}\PY{o}{+}\PY{n}{tablename}\PY{o}{+}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ limit 10}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         	\PY{n}{table\PYZus{}data} \PY{o}{=} \PY{n}{cur}\PY{o}{.}\PY{n}{fetchall}\PY{p}{(}\PY{p}{)}
+         	\PY{k}{return} \PY{n}{table\PYZus{}data}
+         
+         
+         \PY{k}{def} \PY{n+nf}{get\PYZus{}table\PYZus{}columns}\PY{p}{(}\PY{n}{cur}\PY{p}{,} \PY{n}{tablename}\PY{p}{)}\PY{p}{:}
+         
+         	\PY{c+c1}{\PYZsh{} get column\PYZus{}names}
+         	\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Fetching columns in: }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{tablename}\PY{p}{)}
+         	\PY{k}{try}\PY{p}{:} 
+         		\PY{n}{cur}\PY{o}{.}\PY{n}{execute}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{SELECT table\PYZus{}name, column\PYZus{}name from information\PYZus{}schema.columns where table\PYZus{}name = }\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{+}\PY{n}{tablename}\PY{o}{+}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         		\PY{n}{column\PYZus{}names} \PY{o}{=} \PY{n}{cur}\PY{o}{.}\PY{n}{fetchall}\PY{p}{(}\PY{p}{)}
+         		\PY{n}{column\PYZus{}names} \PY{o}{=} \PY{p}{[}\PY{n}{j}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n}{column\PYZus{}names}\PY{p}{]}
+         	\PY{k}{except}\PY{p}{:}
+         		\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Column fetch failed}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         	\PY{k}{return} \PY{n}{column\PYZus{}names}
+         
+         
+         \PY{c+c1}{\PYZsh{} transform data in pandas and save table locally for offline analysis}
+         \PY{k}{def} \PY{n+nf}{clean\PYZus{}response}\PY{p}{(}\PY{n}{table}\PY{p}{,} \PY{n}{data}\PY{p}{,} \PY{n}{column\PYZus{}names}\PY{p}{)}\PY{p}{:}
+         	\PY{c+c1}{\PYZsh{} inp: table data and column\PYZus{}names}
+         	\PY{c+c1}{\PYZsh{} out: pandas dataframe}
+         
+         	\PY{n}{data} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{data}\PY{p}{)}
+         	\PY{n}{data}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{n}{column\PYZus{}names}\PY{p}{]}
+         	\PY{n}{out\PYZus{}file} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{out\PYZus{}data\PYZus{}from\PYZus{}tablename\PYZus{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{+}\PY{n}{table}\PY{o}{+}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.csv}\PY{l+s+s1}{\PYZsq{}}
+         	\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Saving data from table: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{, to file: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{table}\PY{p}{,} \PY{n}{out\PYZus{}file}\PY{p}{)}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} 	data.to\PYZus{}csv(out\PYZus{}file, index=False, encoding=\PYZsq{}utf\PYZhy{}8\PYZsq{})}
+             
+         
+         \PY{c+c1}{\PYZsh{} Etracting all tables at the host in a list and finally,}
+         \PY{c+c1}{\PYZsh{} extracting the table we want i.e. \PYZsq{}hard\PYZus{}drive\PYZus{}stats}
+         \PY{n}{db\PYZus{}conn\PYZus{}obj} \PY{o}{=} \PY{n}{postgres\PYZus{}db\PYZus{}connection}\PY{p}{(}\PY{p}{)}
+         \PY{n}{tables} \PY{o}{=} \PY{n}{get\PYZus{}all\PYZus{}tables}\PY{p}{(}\PY{n}{db\PYZus{}conn\PYZus{}obj}\PY{p}{)}
+         
+         \PY{n}{table} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{hard\PYZus{}drive\PYZus{}stats}\PY{l+s+s1}{\PYZsq{}}
+         \PY{n}{data} \PY{o}{=} \PY{n}{lookup\PYZus{}a\PYZus{}table}\PY{p}{(}\PY{n}{db\PYZus{}conn\PYZus{}obj}\PY{p}{,} \PY{n}{table}\PY{p}{)}
+         \PY{n}{table\PYZus{}data} \PY{o}{=} \PY{n}{lookup\PYZus{}a\PYZus{}table}\PY{p}{(}\PY{n}{db\PYZus{}conn\PYZus{}obj}\PY{p}{,} \PY{n}{table}\PY{p}{)}
+         \PY{n}{table\PYZus{}column\PYZus{}names} \PY{o}{=} \PY{n}{get\PYZus{}table\PYZus{}columns}\PY{p}{(}\PY{n}{db\PYZus{}conn\PYZus{}obj}\PY{p}{,} \PY{n}{table}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} transform data in pandas}
+         \PY{n}{clean\PYZus{}response}\PY{p}{(}\PY{n}{table}\PY{p}{,} \PY{n}{table\PYZus{}data}\PY{p}{,} \PY{n}{table\PYZus{}column\PYZus{}names}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Connecting to postgresql server{\ldots}
+Successfully connected to the host
+
+Extracting list of tables:
+
+Reading table: hard\_drive\_stats{\ldots}
+
+Reading table: hard\_drive\_stats{\ldots}
+Fetching columns in:  hard\_drive\_stats
+Saving data from table: hard\_drive\_stats, to file: out\_data\_from\_tablename\_hard\_drive\_stats.csv
+
+    \end{Verbatim}
+
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  At the end of the above \texttt{code} snippet, data is downloaded and
+  saved locally to current directory.
+\item
+  Name: out\_data\_from\_tablename\_hard\_drive\_stats.csv
+\end{enumerate}
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\subsection{Transform}\label{transform}
+
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Now, the dataset is downloaded.
+\item
+  Filename is: out\_data\_from\_tablename\_hard\_drive\_stats.csv
+\item
+  We shall be be using this file going forward, in order to avoid
+  calling the postgres again and again.
+\end{enumerate}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}73}]:} \PY{c+c1}{\PYZsh{} loading dataset from local machine}
+         \PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{out\PYZus{}data\PYZus{}from\PYZus{}tablename\PYZus{}hard\PYZus{}drive\PYZus{}stats.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{df}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}73}]:}    row.names        date   serial\_number                 model  \textbackslash{}
+         0    1865121  2018-01-20        ZA11RRZY           ST8000DM002   
+         1    1865122  2018-01-20  PL1331LAHD3Y7H  HGST HMS5C4040BLE640   
+         2    1865123  2018-01-20        ZA174A42          ST8000NM0055   
+         3    1865124  2018-01-20  PL1331LAHGB3VH  HGST HMS5C4040ALE640   
+         4    1865125  2018-01-20        ZA14ELXG          ST8000NM0055   
+         
+            capacity\_bytes  failure  read\_error\_rate  throughput\_performance  \textbackslash{}
+         0   8001563222016        0      209151808.0                     NaN   
+         1   4000787030016        0              0.0                   106.0   
+         2   8001563222016        0       28504744.0                     NaN   
+         3   4000787030016        0              0.0                   104.0   
+         4   8001563222016        0       77116864.0                     NaN   
+         
+            spin\_up\_time  start\_stop\_count  reallocated\_sector  seek\_time\_performance  \textbackslash{}
+         0           0.0               3.0                 0.0                    NaN   
+         1           0.0               4.0                 0.0                   42.0   
+         2           0.0               4.0                 0.0                    NaN   
+         3         431.0               5.0                 0.0                   42.0   
+         4           0.0               3.0                 0.0                    NaN   
+         
+            power\_on\_hours  power\_cycle\_count  reported\_uncorrect  command\_timeout  \textbackslash{}
+         0         13874.0                3.0                 0.0              0.0   
+         1         14041.0                4.0                 NaN              NaN   
+         2          4726.0                4.0                 0.0              0.0   
+         3          8475.0                5.0                 NaN              NaN   
+         4          7309.0                3.0                 0.0              0.0   
+         
+            high\_fly\_writes  airflow\_temprature  load\_cycle\_count  total\_lbas\_written  
+         0              0.0                29.0            3888.0        5.189666e+10  
+         1              NaN                 NaN             143.0                 NaN  
+         2              0.0                35.0             716.0        2.152110e+10  
+         3              NaN                 NaN              11.0                 NaN  
+         4              0.0                34.0            2380.0        3.561304e+10  
+\end{Verbatim}
+            
+    \paragraph{Get basic look of the
+dataset}\label{get-basic-look-of-the-dataset}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{c+c1}{\PYZsh{} number of rows}
+         \PY{n}{rows} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+         \PY{n}{columns} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Number of rows are: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{ and number of columns: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{rows}\PY{p}{,} \PY{n}{columns}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{dtypes}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Number of rows are: 8949492 and number of columns: 20
+
+row.names                   int64
+date                       object
+serial\_number              object
+model                      object
+capacity\_bytes              int64
+failure                     int64
+read\_error\_rate           float64
+throughput\_performance    float64
+spin\_up\_time              float64
+start\_stop\_count          float64
+reallocated\_sector        float64
+seek\_time\_performance     float64
+power\_on\_hours            float64
+power\_cycle\_count         float64
+reported\_uncorrect        float64
+command\_timeout           float64
+high\_fly\_writes           float64
+airflow\_temprature        float64
+load\_cycle\_count          float64
+total\_lbas\_written        float64
+dtype: object
+
+    \end{Verbatim}
+
+    \paragraph{More wrangling of the data}\label{more-wrangling-of-the-data}
+
+    First up, I get rid of some irrelevant columns and then indentify the
+top 10 hard drives.
+
+I will apply some cleaning on the columns, changing dtypes and more.
+Next, I discard/drop columns based on: 1. high number of Nan 2.
+irrelevance 3. top 10 models
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{c+c1}{\PYZsh{} drop everything where 10 or more rows are Nan}
+         \PY{n}{df} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{n}{thresh}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+         
+         
+         \PY{c+c1}{\PYZsh{} drop column row.names}
+         \PY{n}{df} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{row.names}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+         
+         
+         \PY{c+c1}{\PYZsh{} change data type}
+         \PY{n}{new\PYZus{}date} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{to\PYZus{}datetime}\PY{p}{(}\PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+         \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{new\PYZus{}date}
+\end{Verbatim}
+
+
+    Data types now look like this:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{df}\PY{o}{.}\PY{n}{shape}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}14}]:} (8949141, 19)
+\end{Verbatim}
+            
+    \subsubsection{Top 10 most common hard
+drives}\label{top-10-most-common-hard-drives}
+
+\begin{itemize}
+\tightlist
+\item
+  After getting rid of some of the duplicates.
+\item
+  Now based the dataset, I am making the following assumptions:
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Hard drives with number of datapoints are the most common hard drives.
+\item
+  Since there are multiple serial\_numbers that belong to the same Hard
+  Drive model, I am taking a unique count only.
+\end{enumerate}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{c+c1}{\PYZsh{} getting a list of the msot common drives}
+         \PY{n}{most\PYZus{}common\PYZus{}models} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{model}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{as\PYZus{}index}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{model}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.} \PY{n}{size}\PY{p}{(}\PY{p}{)}
+         \PY{n}{most\PYZus{}common\PYZus{}models} \PY{o}{=} \PY{n}{most\PYZus{}common\PYZus{}models}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+\end{Verbatim}
+
+
+    Most Common Models in descending order are:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{c+c1}{\PYZsh{} number of different models }
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{There are 53 models: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{most\PYZus{}common\PYZus{}models}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+There are 53 models:  53
+
+    \end{Verbatim}
+
+    \paragraph{Top 10 Models based on most number of Hard Drives
+are}\label{top-10-models-based-on-most-number-of-hard-drives-are}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{n}{top10\PYZus{}models} \PY{o}{=} \PY{n}{most\PYZus{}common\PYZus{}models}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{10}\PY{p}{]}
+         \PY{n}{top10\PYZus{}models}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}17}]:} model
+         ST4000DM000                2822270
+         HGST HMS5C4040BLE640       1363173
+         ST12000NM0007              1296241
+         ST8000NM0055               1293502
+         ST8000DM002                 888733
+         HGST HMS5C4040ALE640        505026
+         ST6000DX000                 169017
+         Hitachi HDS5C4040ALE630     115984
+         ST10000NM0086               109738
+         HGST HUH728080ALE600         94024
+         dtype: int64
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}61}]:} \PY{n}{top10\PYZus{}models}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{kind}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bar}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{legend}\PY{o}{=} \PY{k+kc}{False}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Top 10 common models and the number of hard Drives in each:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Top 10 common models and the number of hard Drives in each:
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_22_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsubsection{Filtering - Limiting the dataset by only top 10
+models}\label{filtering---limiting-the-dataset-by-only-top-10-models}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}62}]:} \PY{c+c1}{\PYZsh{} top 10 models}
+         \PY{n}{list\PYZus{}top10\PYZus{}models} \PY{o}{=} \PY{p}{[}\PY{n}{i} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{top10\PYZus{}models}\PY{o}{.}\PY{n}{index}\PY{p}{]}
+         
+         \PY{c+c1}{\PYZsh{} this is the new dataframe based on the top 10 models}
+         \PY{n}{new\PYZus{}df} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{model}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{isin}\PY{p}{(}\PY{n}{list\PYZus{}top10\PYZus{}models}\PY{p}{)}\PY{p}{]}
+         
+         \PY{n}{new\PYZus{}df}\PY{o}{.}\PY{n}{shape}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}62}]:} (8657708, 19)
+\end{Verbatim}
+            
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\paragraph{Using the new dataframe from here
+on}\label{using-the-new-dataframe-from-here-on}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}63}]:} \PY{c+c1}{\PYZsh{} Changing datatypes}
+         \PY{n}{new\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{failure}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{new\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{failure}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bool}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} saving top10 models data to csv}
+         \PY{c+c1}{\PYZsh{} new\PYZus{}df.to\PYZus{}csv(\PYZsq{}top10\PYZus{}models.csv\PYZsq{}, index=False)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+/anaconda3/lib/python3.6/site-packages/ipykernel\_launcher.py:2: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row\_indexer,col\_indexer] = value instead
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html\#indexing-view-versus-copy
+  
+
+    \end{Verbatim}
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\subsection{Analysis}\label{analysis}
+
+Keeping in mind that the resources available \emph{do not} accurately
+describe this particular dataset. It is crucial to proceed with caution.
+
+I researched online and read a number of articles. I settled one the
+ones I found most relevant. I have used this information to help me
+understand the schema and it's various attributes.
+
+\subsubsection{Resources:}\label{resources}
+
+These are some of the resources I found helpful.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Understanding differet SMART stats:
+  https://www.backblaze.com/blog/what-smart-stats-indicate-hard-drive-failures/
+\item
+  SMART schema on WIKI:
+  https://en.wikipedia.org/wiki/S.M.A.R.T.\#ATA\_S.M.A.R.T.\_attributes
+\item
+  Research Paper:
+  http://cs229.stanford.edu/proj2017/final-reports/5242080.pdf
+\end{enumerate}
+
+\subsubsection{Tools:}\label{tools}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  I have utilized scikit library for prediction.
+\item
+  Partly used pandas and Google Big Query for faster analysis in SQL,
+  and
+\item
+  matplotlib + Google Data Studio for plotting charts.
+\end{enumerate}
+
+    \paragraph{Let's check the cardinality of each
+columns}\label{lets-check-the-cardinality-of-each-columns}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{c+c1}{\PYZsh{} find unique values per columns}
+         \PY{k}{for} \PY{n}{cols} \PY{o+ow}{in} \PY{n}{new\PYZus{}df}\PY{o}{.}\PY{n}{columns}\PY{p}{:}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{ has: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{ unique values}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{cols}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{new\PYZus{}df}\PY{p}{[}\PY{n}{cols}\PY{p}{]}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+date has: 90 unique values
+serial\_number has: 101310 unique values
+model has: 10 unique values
+capacity\_bytes has: 5 unique values
+failure has: 2 unique values
+read\_error\_rate has: 5938125 unique values
+throughput\_performance has: 67 unique values
+spin\_up\_time has: 288 unique values
+start\_stop\_count has: 187 unique values
+reallocated\_sector has: 1023 unique values
+seek\_time\_performance has: 11 unique values
+power\_on\_hours has: 43903 unique values
+power\_cycle\_count has: 123 unique values
+reported\_uncorrect has: 70 unique values
+command\_timeout has: 161 unique values
+high\_fly\_writes has: 1175 unique values
+airflow\_temprature has: 45 unique values
+load\_cycle\_count has: 190691 unique values
+total\_lbas\_written has: 6562030 unique values
+
+    \end{Verbatim}
+
+    \subsection{\#\#\# Plotting graphs to get a visual look and
+analyze}\label{plotting-graphs-to-get-a-visual-look-and-analyze}
+
+\paragraph{Using Google Data Studio and Big
+Query:}\label{using-google-data-studio-and-big-query}
+
+\begin{itemize}
+\tightlist
+\item
+  Google Data Studio provides for a much more robust and interactive
+  reporting system.
+\item
+  I loaded the dataset into Big Query and used Google Data Studio
+  because of it's SQL support, interactive platform and robustness with
+  doing exploratory analysis on a large dataset.
+\item
+  There are some key charts provided below.
+\end{itemize}
+
+\paragraph{Click Here for a full report:
+https://datastudio.google.com/open/1vzmbcHsLQ-OMZZsfXUnECJbIteK\_kdF7}\label{click-here-for-a-full-report-httpsdatastudio.google.comopen1vzmbchslq-omzzsfxunecjbitek_kdf7}
+
+    \paragraph{Looking at the trends displayed below, we can derive the
+following (refer to the Studio Report below)
+:}\label{looking-at-the-trends-displayed-below-we-can-derive-the-following-refer-to-the-studio-report-below}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Number of positive Hard drives failure trend are going down. This
+  trend is proportional to the power cycle of the hard drives. This
+  means that as the hard drives get old over time, they are more likely
+  to fail. This is also verified by external sources, a typical life of
+  a hard drive is around 5 years. This can help find out the likelyhood
+  of a drive failing.
+\item
+  Reported uncorrectable errors tend to go down as the failure count
+  goes down over time. On the other hand, the reallocated sectors a
+  going up. Both of these features should ideally be of a lower value
+  for a healthy hard drive. There are higher chances of failure if both
+  of these factors go up in the future.
+\item
+  Hard Drives have to reallocated sectors at a much higher rate in the
+  event of a failure. This happens becase hard drives need to remap the
+  data to a different sector in order to avoid data loss. Frequent
+  remapping like this is not a good sign of a healthy hard drive.
+\item
+  High fly rates decrease with decrease in failure. This may indicate
+  that a lower high fly rate is a potential sign of healthier hard
+  drives.
+\end{enumerate}
+
+There are more exploratory analysis performed on google data studio
+report, link is provided below.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}67}]:} \PY{c+c1}{\PYZsh{} rendering google data studio report}
+         \PY{k+kn}{from} \PY{n+nn}{IPython}\PY{n+nn}{.}\PY{n+nn}{display} \PY{k}{import} \PY{n}{IFrame}
+         \PY{n}{IFrame}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{https://datastudio.google.com/embed/reporting/1vzmbcHsLQ\PYZhy{}OMZZsfXUnECJbIteK\PYZus{}kdF7/page/xJMf}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{width}\PY{o}{=}\PY{l+m+mi}{900}\PY{p}{,} \PY{n}{height}\PY{o}{=}\PY{l+m+mi}{675}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}67}]:} <IPython.lib.display.IFrame at 0x10bc9af98>
+\end{Verbatim}
+            
+    \subsection{\#\#\#\# Assumptions made and references drawn, in
+performing the
+analysis:}\label{assumptions-made-and-references-drawn-in-performing-the-analysis}
+
+Since there isn't enough detail about the dataset in this case study,
+some external researching is required to get an understanding.
+
+There are exponetial values in some of SMART metrics. The provided data
+stream is raw and there isn't much information available online about
+different expoential values. I couldn't find a meaningful method to
+normalize the raw data to a 100 point scale in order to make a better
+correlation.
+
+\subsection{\#\#\#\# Analysis Conclusion}\label{analysis-conclusion}
+
+In conclusion, the metrics in SMART systems are most often high
+uncorrelated. It wouldn't be recommended to rely on one of them to make
+a decision about a possible drive failure.
+
+    \paragraph{(This is Optional)}\label{this-is-optional}
+
+\emph{In case the above embeded code for Data Studio report failed, I am
+including local PNG import of some of the charts.}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Number Hard Drives per model
+
+  \begin{enumerate}
+  \def\labelenumii{\arabic{enumii}.}
+  \setcounter{enumii}{1}
+  \tightlist
+  \item
+    Number of positive failures by model 
+  \end{enumerate}
+\end{enumerate}
+
+\begin{verbatim}
+<tr>
+    <td>3. Failure Trend over time
+        <img src="graphs/failure-trend-timeseries.png" width="600"></td>
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Daily Failure Trend to determine missing failure data pattern 
+\end{enumerate}
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\subsection{Machine learning to Predict Possible Failures
+based}\label{machine-learning-to-predict-possible-failures-based}
+
+    \subsubsection{Feature selection:}\label{feature-selection}
+
+Based on my findings and research on SMART attributes, I have found the
+following variables to be the most significant out of the total
+available dataset. The variables are highly non correlated, I made the
+selection based on what works as a industry standard for SMART
+predictions.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}23}]:} \PY{c+c1}{\PYZsh{} get all columns and the number of NaN in them}
+         \PY{n}{new\PYZus{}df}\PY{o}{.}\PY{n}{isna}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}23}]:} date                            0
+         serial\_number                   0
+         model                           0
+         capacity\_bytes                  0
+         failure                         0
+         read\_error\_rate                 0
+         throughput\_performance    6579501
+         spin\_up\_time                    0
+         start\_stop\_count                0
+         reallocated\_sector              0
+         seek\_time\_performance     6579501
+         power\_on\_hours                  0
+         power\_cycle\_count               0
+         reported\_uncorrect        2078207
+         command\_timeout           2078207
+         high\_fly\_writes           3374448
+         airflow\_temprature        2078207
+         load\_cycle\_count                0
+         total\_lbas\_written        2078207
+         dtype: int64
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}24}]:} \PY{c+c1}{\PYZsh{} new\PYZus{}df.groupby([\PYZsq{}model\PYZsq{}], as\PYZus{}index=True)[\PYZsq{}failure\PYZsq{}].head()}
+         \PY{c+c1}{\PYZsh{} failure\PYZus{}by\PYZus{}model = new\PYZus{}df.groupby(\PYZsq{}failure\PYZsq{}).agg(\PYZsq{}model\PYZsq{}).head()}
+         \PY{n}{new\PYZus{}df}\PY{o}{.}\PY{n}{shape}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}24}]:} (8657708, 19)
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} \PY{c+c1}{\PYZsh{} featured selection}
+         \PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+         
+         \PY{c+c1}{\PYZsh{} selecting dataframe slice with no nan values.}
+         \PY{c+c1}{\PYZsh{} first doing a row wise check to see if dropping rows will solve this}
+         \PY{n}{featured\PYZus{}df} \PY{o}{=} \PY{n}{new\PYZus{}df}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{how}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{any}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{thresh}\PY{o}{=}\PY{l+m+mi}{15}\PY{p}{)}
+         \PY{n}{featured\PYZus{}df}\PY{o}{.}\PY{n}{isna}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} there are still three metrics with very high number of nan}
+         \PY{c+c1}{\PYZsh{} dropping more columns}
+         \PY{n}{featured\PYZus{}df} \PY{o}{=} \PY{n}{featured\PYZus{}df}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{throughput\PYZus{}performance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{seek\PYZus{}time\PYZus{}performance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{high\PYZus{}fly\PYZus{}writes}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} final dataframe is ready for any predictive usage}
+         \PY{c+c1}{\PYZsh{} verify nan in featured\PYZus{}df}
+         \PY{n}{featured\PYZus{}df}\PY{o}{.}\PY{n}{isna}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}25}]:} date                  0
+         serial\_number         0
+         model                 0
+         capacity\_bytes        0
+         failure               0
+         read\_error\_rate       0
+         spin\_up\_time          0
+         start\_stop\_count      0
+         reallocated\_sector    0
+         power\_on\_hours        0
+         power\_cycle\_count     0
+         reported\_uncorrect    0
+         command\_timeout       0
+         airflow\_temprature    0
+         load\_cycle\_count      0
+         total\_lbas\_written    0
+         dtype: int64
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}26}]:} \PY{c+c1}{\PYZsh{} quick look at the featured\PYZus{}df}
+         \PY{n}{featured\PYZus{}df}\PY{o}{.}\PY{n}{shape}
+         
+         \PY{c+c1}{\PYZsh{} find unique models per columns}
+         \PY{n+nb}{len}\PY{p}{(}\PY{n}{featured\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{model}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}26}]:} 6
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}27}]:} \PY{c+c1}{\PYZsh{} number of dates in featured\PYZus{}df}
+         \PY{n+nb}{len}\PY{p}{(}\PY{n}{featured\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}27}]:} 90
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} \PY{c+c1}{\PYZsh{} number of dates in featured\PYZus{}df}
+         \PY{n+nb}{len}\PY{p}{(}\PY{n}{featured\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{serial\PYZus{}number}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}28}]:} 76355
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}29}]:} \PY{c+c1}{\PYZsh{} saving feature\PYZus{}df to csv, this is optional. }
+         \PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+         \PY{c+c1}{\PYZsh{} using this to ocassionally push data to Big Query}
+         
+         \PY{c+c1}{\PYZsh{} this is optional for re\PYZhy{}runs}
+         \PY{c+c1}{\PYZsh{} featured\PYZus{}df.to\PYZus{}csv(\PYZsq{}featured\PYZus{}hard\PYZus{}drive\PYZus{}dataset.csv\PYZsq{}, index=False)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}57}]:} \PY{k+kn}{import} \PY{n+nn}{psycopg2}
+         \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+         \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+         \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+         \PY{k+kn}{from} \PY{n+nn}{sklearn} \PY{k}{import} \PY{n}{ensemble}\PY{p}{,} \PY{n}{metrics}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}31}]:} \PY{c+c1}{\PYZsh{} load featured hard drive dataset}
+         \PY{n}{hdd} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{featured\PYZus{}hard\PYZus{}drive\PYZus{}dataset.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}32}]:} \PY{n}{hdd}\PY{o}{.}\PY{n}{shape}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}32}]:} (6579501, 16)
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}33}]:} \PY{c+c1}{\PYZsh{} number of unique hard drives}
+         \PY{n}{hdd}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{serial\PYZus{}number}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{value\PYZus{}counts}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{shape}
+         
+         \PY{c+c1}{\PYZsh{} since hard drives serial number is unique across, we use this as the index}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}33}]:} (76355,)
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}34}]:} \PY{c+c1}{\PYZsh{} there are 6 models now left in the featured dataset}
+         \PY{n}{hdd}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{model}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{value\PYZus{}counts}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{shape}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}34}]:} (6,)
+\end{Verbatim}
+            
+    I've used Big Query in parts where I found it easy to do analysis using
+SQL. Below is the sql script to get \% of failure per model \#\#\#\# SQL
+to get \% of failure per model:
+
+\begin{verbatim}
+SELECT
+  model,
+  COUNT(DISTINCT serial_number) number_of_hdd,
+  SUM(IF(failure IS TRUE,
+      1,
+      0)) fails,
+  ROUND(SUM(IF(failure IS TRUE,
+        1,
+        0))/COUNT(DISTINCT serial_number),3) percentage_of_fails
+FROM
+
+  `orbital-linker-226700.pandey.hard_drive_stats_top10_models`
+GROUP BY
+  model order by number_of_hdd desc
+\end{verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}69}]:} \PY{c+c1}{\PYZsh{} exported sql output and reading in pandas}
+         \PY{n}{sql\PYZus{}output} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{reports/failure\PYZus{}percentage\PYZus{}by\PYZus{}model.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{sql\PYZus{}output}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} This shows that the data is highly imbalanced and the model with most fails is only about .006 or .06\PYZpc{} of total data.}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}69}]:}                      model  number\_of\_hdd  fails  percentage\_of\_fails
+         0              ST4000DM000          32091    178                0.006
+         1            ST12000NM0007          16833     32                0.002
+         2     HGST HMS5C4040BLE640          15374     16                0.001
+         3             ST8000NM0055          14418     28                0.002
+         4              ST8000DM002           9912     21                0.002
+         5     HGST HMS5C4040ALE640           6237      8                0.001
+         6  Hitachi HDS5C4040ALE630           2296      0                0.000
+         7              ST6000DX000           1882      1                0.001
+         8            ST10000NM0086           1220      0                0.000
+         9     HGST HUH728080ALE600           1048      3                0.003
+\end{Verbatim}
+            
+    Above: Full list of model their \% of failure
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}70}]:} \PY{c+c1}{\PYZsh{} using ST4000DM000	 model}
+         \PY{n}{hdd\PYZus{}st4000} \PY{o}{=} \PY{n}{hdd}\PY{o}{.}\PY{n}{query}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{model == }\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{ST4000DM000}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{hdd\PYZus{}st4000}\PY{o}{.}\PY{n}{shape}
+         
+         \PY{n}{hdd\PYZus{}st4000}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{serial\PYZus{}number}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{value\PYZus{}counts}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{shape}
+         
+         \PY{c+c1}{\PYZsh{} number of failures in this hard drive model}
+         \PY{n}{hdd\PYZus{}st4000}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{failure}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{value\PYZus{}counts}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}70}]:} False    2822092
+         True         178
+         Name: failure, dtype: int64
+\end{Verbatim}
+            
+    \subsubsection{Preparing training and testing datasets using dataframe
+'hdd'}\label{preparing-training-and-testing-datasets-using-dataframe-hdd}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}71}]:} \PY{c+c1}{\PYZsh{} using data from all models}
+         \PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+         \PY{n}{date} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{to\PYZus{}datetime}\PY{p}{(}\PY{n}{hdd}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+         \PY{n}{hdd}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{date}
+         
+         \PY{c+c1}{\PYZsh{} add day of year using date column}
+         \PY{n}{hdd}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{day\PYZus{}of\PYZus{}year}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{hdd}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{dt}\PY{o}{.}\PY{n}{dayofyear}
+         
+         \PY{c+c1}{\PYZsh{} grouping by getting all unique hard drives}
+         \PY{c+c1}{\PYZsh{} indexing by serial number as every hard drive will have a unique serial number}
+         
+         \PY{n}{hdd\PYZus{}group} \PY{o}{=} \PY{n}{hdd}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{serial\PYZus{}number}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} take the last row from each group}
+         \PY{n}{hdd\PYZus{}last\PYZus{}day} \PY{o}{=} \PY{n}{hdd\PYZus{}group}\PY{o}{.}\PY{n}{nth}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+         
+         
+         \PY{n+nb}{len}\PY{p}{(}\PY{n}{hdd\PYZus{}last\PYZus{}day}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}71}]:} 29
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}40}]:} \PY{c+c1}{\PYZsh{} total failure per model for one day}
+         \PY{n}{hdd\PYZus{}last\PYZus{}day}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{failure}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{value\PYZus{}counts}\PY{p}{(}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} number of drives in the dataset}
+         \PY{n}{uniq\PYZus{}serial\PYZus{}numbers} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{Series}\PY{p}{(}\PY{n}{hdd\PYZus{}last\PYZus{}day}\PY{o}{.}\PY{n}{index}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{n}{uniq\PYZus{}serial\PYZus{}numbers}\PY{o}{.}\PY{n}{shape}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}40}]:} (76355,)
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}41}]:} \PY{n}{hdd\PYZus{}last\PYZus{}day}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{failure}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{value\PYZus{}counts}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}41}]:} False    76271
+         True        84
+         Name: failure, dtype: int64
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}42}]:} \PY{c+c1}{\PYZsh{} slicing a copy of 25\PYZpc{} of all unique hard drives for test}
+         \PY{n}{test\PYZus{}ids} \PY{o}{=} \PY{n}{uniq\PYZus{}serial\PYZus{}numbers}\PY{o}{.}\PY{n}{sample}\PY{p}{(}\PY{n}{frac}\PY{o}{=}\PY{l+m+mf}{0.25}\PY{p}{)}
+         \PY{n}{train} \PY{o}{=} \PY{n}{hdd\PYZus{}last\PYZus{}day}\PY{o}{.}\PY{n}{query}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{index not in @test\PYZus{}ids}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{test} \PY{o}{=} \PY{n}{hdd\PYZus{}last\PYZus{}day}\PY{o}{.}\PY{n}{query}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{index in @test\PYZus{}ids}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} test data has now looks like this}
+         \PY{n}{test}\PY{o}{.}\PY{n}{shape}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}42}]:} (19089, 16)
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}43}]:} \PY{c+c1}{\PYZsh{} test data}
+         \PY{n}{test}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{failure}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{value\PYZus{}counts}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}43}]:} False    19066
+         True        23
+         Name: failure, dtype: int64
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}44}]:} \PY{n}{train}\PY{o}{.}\PY{n}{shape}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}44}]:} (57266, 16)
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}45}]:} \PY{c+c1}{\PYZsh{} train data has remaining 24029 data points}
+         \PY{n}{train}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{failure}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{value\PYZus{}counts}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}45}]:} False    57205
+         True        61
+         Name: failure, dtype: int64
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}46}]:} \PY{c+c1}{\PYZsh{} training and testing labels}
+         \PY{n}{train\PYZus{}labels} \PY{o}{=} \PY{n}{train}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{failure}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{c+c1}{\PYZsh{} failure is the final label we would like to predict }
+         \PY{n}{test\PYZus{}labels} \PY{o}{=} \PY{n}{test}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{failure}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         
+         \PY{c+c1}{\PYZsh{} drop labels from train and test}
+         \PY{n}{train} \PY{o}{=} \PY{n}{train}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{failure}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{test} \PY{o}{=} \PY{n}{test}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{failure}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}47}]:} \PY{n}{train}\PY{o}{.}\PY{n}{shape}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}47}]:} (57266, 15)
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}48}]:} \PY{c+c1}{\PYZsh{}drop date related features from tree model}
+         \PY{n}{train} \PY{o}{=} \PY{n}{train}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{day\PYZus{}of\PYZus{}year}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{test} \PY{o}{=} \PY{n}{test}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{day\PYZus{}of\PYZus{}year}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} removing other irrelevant or constant columns}
+         
+         \PY{c+c1}{\PYZsh{} this is out final training and test dataset with all the right features}
+         \PY{n}{train} \PY{o}{=} \PY{n}{train}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{model}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{capacity\PYZus{}bytes}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{power\PYZus{}on\PYZus{}hours}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{total\PYZus{}lbas\PYZus{}written}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{test} \PY{o}{=} \PY{n}{test}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{model}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{capacity\PYZus{}bytes}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{power\PYZus{}on\PYZus{}hours}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{total\PYZus{}lbas\PYZus{}written}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}49}]:} \PY{n}{train}\PY{o}{.}\PY{n}{shape}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}49}]:} (57266, 9)
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}50}]:} \PY{c+c1}{\PYZsh{} these are the training features}
+         \PY{n}{train}\PY{o}{.}\PY{n}{columns}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}50}]:} Index(['airflow\_temprature', 'command\_timeout', 'load\_cycle\_count',
+                'power\_cycle\_count', 'read\_error\_rate', 'reallocated\_sector',
+                'reported\_uncorrect', 'spin\_up\_time', 'start\_stop\_count'],
+               dtype='object')
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}51}]:} \PY{c+c1}{\PYZsh{} check first 10 training labels}
+         \PY{n}{train\PYZus{}labels}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{10}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}51}]:} serial\_number
+         S3000A9T    False
+         S3000FZ5    False
+         S3000NSV    False
+         S3000QAP    False
+         S30015PW    False
+         S3001FPA    False
+         S3001HBH    False
+         S30034E6    False
+         S3003A6V    False
+         S3003GAB    False
+         Name: failure, dtype: bool
+\end{Verbatim}
+            
+    \subsubsection{Prediction using Random Forest
+Ensemble}\label{prediction-using-random-forest-ensemble}
+
+For prediction, I tried a couple of options from logistic regression to
+Naive Bayes but finally settled on random forest classifier tree for
+following reasons: 1. Data is full of poorly correlated SMART features.
+3. For regression, normalization of some of the attributes would be
+required. 4. Since there isn't much information available on how
+different large float values can be normalized, it's a better idea to
+stick with the absolute numbers only 5. Use raw values instead of
+normalization since normalization has no impact on performance of a
+tree. 6. Random forest classifiers are designed to reduce the overall
+error rate and work over raw data.
+
+\paragraph{Overall}\label{overall}
+
+There doesn't seem to be a lot of correlation between various SMART
+attributes, and this varies greatly over different models of hard drive.
+A decision tree model (random forest) that looks at more than one
+attribute in order to make a better guess at detecting any future
+failures.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}64}]:} \PY{n}{rf\PYZus{}clf} \PY{o}{=} \PY{n}{ensemble}\PY{o}{.}\PY{n}{RandomForestClassifier}\PY{p}{(}\PY{n}{n\PYZus{}jobs}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{max\PYZus{}depth}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} here\PYZsq{}s how the random forest object looks}
+         \PY{n}{rf\PYZus{}clf}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{train}\PY{p}{,} \PY{n}{train\PYZus{}labels}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}64}]:} RandomForestClassifier(bootstrap=True, class\_weight=None, criterion='gini',
+                     max\_depth=3, max\_features='auto', max\_leaf\_nodes=None,
+                     min\_impurity\_decrease=0.0, min\_impurity\_split=None,
+                     min\_samples\_leaf=1, min\_samples\_split=2,
+                     min\_weight\_fraction\_leaf=0.0, n\_estimators=10, n\_jobs=1,
+                     oob\_score=False, random\_state=None, verbose=0,
+                     warm\_start=False)
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}53}]:} \PY{c+c1}{\PYZsh{} Apply the Classifier we trained to the test data}
+         \PY{n}{rf\PYZus{}clf}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{test}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}53}]:} array([False, False, False, {\ldots}, False, False, False])
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}54}]:} \PY{c+c1}{\PYZsh{} generating the predicted values of possible of features for test data using trained rf\PYZus{}clf, generated above}
+         \PY{n}{preds} \PY{o}{=} \PY{n}{rf\PYZus{}clf}\PY{o}{.}\PY{n}{predict\PYZus{}proba}\PY{p}{(}\PY{n}{test}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} check predicted values of the first 10 observations}
+         \PY{n}{preds}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{10}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}54}]:} array([[9.98842063e-01, 1.15793746e-03],
+                [9.98980480e-01, 1.01951991e-03],
+                [9.99389243e-01, 6.10756587e-04],
+                [9.98842063e-01, 1.15793746e-03],
+                [9.98842063e-01, 1.15793746e-03],
+                [9.98842063e-01, 1.15793746e-03],
+                [9.98980480e-01, 1.01951991e-03],
+                [9.99256057e-01, 7.43943123e-04],
+                [9.98712833e-01, 1.28716695e-03],
+                [9.98842063e-01, 1.15793746e-03]])
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}55}]:} \PY{c+c1}{\PYZsh{} performing quick ROC and log loss functions to see how the the data looks}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ROC Area Under Curve}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{metrics}\PY{o}{.}\PY{n}{roc\PYZus{}auc\PYZus{}score}\PY{p}{(}\PY{n}{y\PYZus{}true}\PY{o}{=}\PY{n}{test\PYZus{}labels}\PY{p}{,} \PY{n}{y\PYZus{}score}\PY{o}{=}\PY{n}{preds}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+ROC Area Under Curve 0.7667108305702389
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}56}]:} \PY{c+c1}{\PYZsh{} performing quick ROC and log loss functions to see how the the data}
+         
+         \PY{n}{metrics}\PY{o}{.}\PY{n}{roc\PYZus{}auc\PYZus{}score}\PY{p}{(}\PY{n}{y\PYZus{}true}\PY{o}{=}\PY{n}{test\PYZus{}labels}\PY{p}{,} \PY{n}{y\PYZus{}score}\PY{o}{=}\PY{n}{preds}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}56}]:} 0.7667108305702389
+\end{Verbatim}
+            
+    Since, above tell us that the area under curve is about 0.75, so that's
+a good enough
+
+    \subsubsection{Challenges:}\label{challenges}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Highly critical features like throughput\_performance',
+  'seek\_time\_performance', 'high\_fly\_writes and 'command\_timeout'
+  have a lot of missing data. This makes the training dataset
+  unreliable.
+\item
+  A sound relationship between these uncorrelated metrics/features is
+  needed to better understand things like:
+
+  \begin{enumerate}
+  \def\labelenumii{\arabic{enumii}.}
+  \tightlist
+  \item
+    How command\_timeout affects retry count or,
+  \item
+    How reallocated sector changes over time as the drive gets old.
+  \item
+    Different models are manufactured by different companies, and not
+    all manufacturers have all SMART metrics, among other factors like
+    usage, data-center wear and tear, climatic conditions. This makes it
+    difficult to design a general training that would work across the
+    board.
+  \item
+    Data is not normalized and there isn't much information on how to
+    normalize them: is the reallocated sector by bits or bytes? are all
+    these drives magnetic tapes, hybrid or SSDs?
+  \end{enumerate}
+\end{enumerate}
+
+Normalization would make a much a better regression design, or at least
+present one such option to do so.
+
+\paragraph{Our model accurately predicted about 77\% of the time that a
+drive is likely to
+fail.}\label{our-model-accurately-predicted-about-77-of-the-time-that-a-drive-is-likely-to-fail.}
+
+    \subsection{Business wide High Level
+Result}\label{business-wide-high-level-result}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+SMART systems widely used industry practice around data center
+management and disk heavy resources.
+
+The above case study attempted to analyze and predict future hard drive
+failures based on the data that was provided. was to predict hard drive
+failures using available dataset.
+
+We identified a few key metrics such as 'throughput\_performance',
+'reallocated sectors', age of the hard drive using 'power on hours' and
+a few more. We analyzed their effect over time as the failure rate goes
+down.
+
+There was also some extensive researching done leading up to identifying
+other highly critical metrics but there seems to be missing data about
+those metrics. Since there isn't enough detail about the dataset in this
+case study, some external researching was required to get an
+understanding.
+
+Using provided data, we predicted over 77\% of possible failure, but
+this can be improved further.
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\paragraph{Some recommended actions and
+improvements:}\label{some-recommended-actions-and-improvements}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Realistically, since not all Hard Drives are manufactured and used
+  under the same roof it's a good idea that for future predictions, we
+  use the critical attributes, mentioned above to analyze their effect
+  on per hard drive model instead of a general prediction.
+\item
+  Including more data source:
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  Using more than one source of information such as operating
+  temperature, throughput, of reads and writes etc. can help build a
+  more robust collection of data that can predict future.
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Backing up drives that are showing critical changes.
+\end{enumerate}
+
+    \subsection{Thanks!}\label{thanks}
+
+Harsh
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}

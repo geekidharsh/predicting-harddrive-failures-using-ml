@@ -1,0 +1,4 @@
+﻿metric_name,critial_metric,ideal_value
+reported_uncorrect,TRUE,low
+command_timeout,TRUE,low
+reallocated_sector,TRUE,low
