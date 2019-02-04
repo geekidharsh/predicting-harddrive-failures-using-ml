@@ -1,5 +1,5 @@
 # Machine Learning to Predicting Harddrive Failures 
-### Using Backblaze dataset on Kaggle.
+Using Backblaze dataset on Kaggle.
 
 ### About the project: 
 This was a Data Science Case Study done for Juul Labs in collaboration with McKinsey & Company. A similar dataset and project can also be found on Kaggle.com
