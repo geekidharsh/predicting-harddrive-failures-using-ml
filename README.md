@@ -66,4 +66,4 @@ Here's a quick overview of how this problem has been approached:
 and more...
 
 #### About the author:
-[@geekidharsh](https://github.com/geekidharsh) : I am Data Engineer with 4+ years of experience in E-commerce, Digital Marketing and understanding quickly changing user behavior, at scale. I am currently working with with [Merck KGaA](https://www.merckgroup.com/en)
+[@geekidharsh](https://github.com/geekidharsh) : I am Data Engineer with 4+ years of experience in E-commerce, Digital Marketing and analyzing swiftly changing user behaviors to make data driven decisions, at scale. I am currently work at [Merck KGaA](https://www.merckgroup.com/en)
