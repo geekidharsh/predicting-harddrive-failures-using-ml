@@ -20,6 +20,9 @@ The study concludes with discussing possible opportunities and challenges with e
 
 
 --------
+#### Full Analysis in Notebook
+[Predicting Hard drive failure](https://github.com/geekidharsh/predicting-harddrive-failures-using-ml/blob/master/Predicting%20Hard%20Drive%20Failure%20-%20%20A%20Data%20Science%20Case%20Study.ipynb)
+
 
 Here's a quick overview of how this problem has been approached: 
 
