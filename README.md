@@ -2,7 +2,10 @@
 Using Backblaze dataset on Kaggle.
 
 ### About the project: 
-This was a Data Science Case Study done for Juul Labs in collaboration with McKinsey & Company. A similar dataset and project can also be found on Kaggle.com
+This was a Data Science Case Study. Dataset used for this project is private but a similar dataset and project can also be found on Kaggle.com
+
+Disclaimer: 
+This case study is based on a sample subset of a larger dataset and does not accurately solve the problem. Case study is done to demonstrate the use of different tools and libraries in ML, how to present your reports, use python for ML. 
 
 ### Sample Dataset: 
 A sample of SMART hard drives dataset can be found and downloaded at: https://www.kaggle.com/backblaze/hard-drive-test-data
