@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-<title>Predicting Hard Drive Failure - A Juul Labs Case Study slides</title>
+<title>Predicting Hard Drive Failure -  A Data Science Case Study slides</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -11905,9 +11905,9 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Predicting-Hard-Drive-Failures-Using-SMART-Metrics">Predicting Hard Drive Failures Using SMART Metrics<a class="anchor-link" href="#Predicting-Hard-Drive-Failures-Using-SMART-Metrics">&#182;</a></h2><h3><img src="images/JUUL_Logo_2018.jpg" align="left" height="40" width="60"> <br> - A Juul Labs Case Study</h3>
+<h1 id="Predicting-Hard-Drive-Failures-Using-SMART-Metrics">Predicting Hard Drive Failures Using SMART Metrics<a class="anchor-link" href="#Predicting-Hard-Drive-Failures-Using-SMART-Metrics">&#182;</a></h1><hr>
 
-<pre><code>                        - by Harshvardhan Pandey | Jan 09 2019</code></pre>
+<pre><code>                        - by Harsh Pandey | harshvardhanpandey@hotmail.com</code></pre>
 
 </div>
 </div>
@@ -11916,10 +11916,10 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="What-are-SMART-systems-?">What are SMART systems ?<a class="anchor-link" href="#What-are-SMART-systems-?">&#182;</a></h3><p>SMART features or <em>S.M.A.R.T. (Self-Monitoring, Analysis and Reporting Technology)</em> is a software monitoring system for hard drives. It is a widely used industry practice around data center management and disk heavy resources. SMART generates a collection different metrics related to help evaluate the overall health of a Hard Drive. These metrics can be specific to a certain number of manufacturers or be more general, sometimes.</p>
-<p>A single metrics may not always determine the exact failure prediction but are commonly accepted to help identify any imminent failure and help handle the backup and restore, in time.</p>
 <h3 id="About-this-case-study-:">About this case study :<a class="anchor-link" href="#About-this-case-study-:">&#182;</a></h3><p>This case study relies on a given data stream provided for this purpose. The goal of this case study is to try and analyze given data and find out meaningful information that can help determine drives failure trends and different factors that may idicate if a drive would fail, and attempt to propose a more data driven answer to future failures based on SMART metrics.</p>
 <p>The study concludes with discussing possible opportunities and challenges with existing model and features that can help design a better predictive model for future.</p>
+<h3 id="What-are-SMART-features-?">What are SMART features ?<a class="anchor-link" href="#What-are-SMART-features-?">&#182;</a></h3><p>SMART features or <em>S.M.A.R.T. (Self-Monitoring, Analysis and Reporting Technology)</em> is a software monitoring system for hard drives. It is a widely used industry practice around data center management and disk heavy resources. SMART generates a collection different metrics related to help evaluate the overall health of a Hard Drive. These metrics can be specific to a certain number of manufacturers or be more general, sometimes.</p>
+<p>A single metrics may not always determine the exact failure prediction but are commonly accepted to help identify any imminent failure and help handle the backup and restore, in time.</p>
 <hr>
 <p>Here's a quick look of how this problem has been approached:</p>
 <h3 id="Extraction-and-Load">Extraction and Load<a class="anchor-link" href="#Extraction-and-Load">&#182;</a></h3><ol>
@@ -11998,10 +11998,10 @@ a.anchor-link {
 
 
 <span class="k">def</span> <span class="nf">get_all_tables</span><span class="p">(</span><span class="n">cur</span><span class="p">):</span>
-	<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Extracting list of tables:&#39;</span><span class="p">)</span>
-	<span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM pg_catalog.pg_tables where schemaname NOT IN (&#39;pg_catalog&#39;, &#39;information_schema&#39;)&quot;</span><span class="p">)</span>
-	<span class="n">tables</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
-	<span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tables</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Extracting list of tables:&#39;</span><span class="p">)</span>
+    <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM pg_catalog.pg_tables where schemaname NOT IN (&#39;pg_catalog&#39;, &#39;information_schema&#39;)&quot;</span><span class="p">)</span>
+    <span class="n">tables</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tables</span><span class="p">]</span>
 	<span class="k">return</span> <span class="n">t</span>
 
 
@@ -12092,10 +12092,8 @@ Saving data from table: hard_drive_stats, to file: out_data_from_tablename_hard_
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<ol>
-<li>At the end of the above <code>code</code> snippet, data is downloaded and saved locally to current directory. </li>
-<li>Name: out_data_from_tablename_hard_drive_stats.csv</li>
-</ol>
+<p>At the end of the above <code>code</code> snippet, data is downloaded and saved locally to current directory.</p>
+<p>Name: <code>out_data_from_tablename_hard_drive_stats.csv</code></p>
 
 </div>
 </div>
@@ -12741,8 +12739,7 @@ See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stabl
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <hr>
-<h2 id="Analysis">Analysis<a class="anchor-link" href="#Analysis">&#182;</a></h2><p>Keeping in mind that the resources available <em>do not</em> accurately describe this particular dataset. It is crucial to proceed with caution.</p>
-<p>I researched online and read a number of articles. I settled one the ones I found most relevant. I have used this information to help me understand the schema and it's various attributes.</p>
+<h2 id="Analysis">Analysis<a class="anchor-link" href="#Analysis">&#182;</a></h2><p>Keeping in mind that the resources available <em>do not</em> accurately describe this particular dataset. It is crucial to proceed with caution. I researched online and read a number of articles. I settled one the ones I found most relevant. I have used this information to help me understand the schema and it's various attributes.</p>
 <h3 id="Resources:">Resources:<a class="anchor-link" href="#Resources:">&#182;</a></h3><p>These are some of the resources I found helpful.</p>
 <ol>
 <li>Understanding differet SMART stats: <a href="https://www.backblaze.com/blog/what-smart-stats-indicate-hard-drive-failures/">https://www.backblaze.com/blog/what-smart-stats-indicate-hard-drive-failures/</a> </li>
@@ -12852,9 +12849,17 @@ total_lbas_written has: 6562030 unique values
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Google-Data-Studio-Report">Google Data Studio Report<a class="anchor-link" href="#Google-Data-Studio-Report">&#182;</a></h2>
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[67]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># rendering google data studio report</span>
@@ -12872,7 +12877,7 @@ total_lbas_written has: 6562030 unique values
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[67]:</div>
+<div class="prompt output_prompt">Out[1]:</div>
 
 
 
@@ -12898,10 +12903,10 @@ total_lbas_written has: 6562030 unique values
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Assumptions-made-and-references-drawn,-in-performing-the-analysis:">Assumptions made and references drawn, in performing the analysis:<a class="anchor-link" href="#Assumptions-made-and-references-drawn,-in-performing-the-analysis:">&#182;</a></h4><hr>
+<h3 id="Assumptions-made-and-references-drawn,-in-performing-the-analysis:">Assumptions made and references drawn, in performing the analysis:<a class="anchor-link" href="#Assumptions-made-and-references-drawn,-in-performing-the-analysis:">&#182;</a></h3><hr>
 <p>Since there isn't enough detail about the dataset in this case study, some external researching is required to get an understanding.</p>
 <p>There are exponetial values in some of SMART metrics. The provided data stream is raw and there isn't much information available online about different expoential values. I couldn't find a meaningful method to normalize the raw data to a 100 point scale in order to make a better correlation.</p>
-<h4 id="Analysis-Conclusion">Analysis Conclusion<a class="anchor-link" href="#Analysis-Conclusion">&#182;</a></h4><hr>
+<h3 id="Analysis-Conclusion">Analysis Conclusion<a class="anchor-link" href="#Analysis-Conclusion">&#182;</a></h3><hr>
 <p>In conclusion, the metrics in SMART systems are most often high uncorrelated. It wouldn't be recommended to rely on one of them to make a decision about a possible drive failure.</p>
 
 </div>
@@ -12911,7 +12916,7 @@ total_lbas_written has: 6562030 unique values
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="(This-is-Optional)">(This is Optional)<a class="anchor-link" href="#(This-is-Optional)">&#182;</a></h4><p><em>In case the above embeded code for Data Studio report failed, I am including local PNG import of some of the charts.</em></p>
+<h4 id="(Optional)">(Optional)<a class="anchor-link" href="#(Optional)">&#182;</a></h4><p><em>In case the above embeded code for Data Studio report failed, I am including local PNG import of some of the charts.</em></p>
 <table>
 <tr>
 <td> 1. Number Hard Drives per model
@@ -13223,8 +13228,7 @@ dtype: int64</pre>
 <div class="prompt input_prompt">In&nbsp;[57]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">psycopg2</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">sklearn</span> <span class="k">import</span> <span class="n">ensemble</span><span class="p">,</span> <span class="n">metrics</span>
@@ -14266,14 +14270,14 @@ are all these drives magnetic tapes, hybrid or SSDs?</li>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Business-wide-High-Level-Result">Business wide High Level Result<a class="anchor-link" href="#Business-wide-High-Level-Result">&#182;</a></h2><hr>
+<h2 id="Final-Conclusion">Final Conclusion<a class="anchor-link" href="#Final-Conclusion">&#182;</a></h2><hr>
 <p>SMART systems widely used industry practice around data center management and disk heavy resources.</p>
 <p>The above case study attempted to analyze and predict future hard drive failures based on the data that was provided. was to predict hard drive failures using available dataset.</p>
 <p>We identified a few key metrics such as 'throughput_performance', 'reallocated sectors', age of the hard drive using 'power on hours' and a few more. We analyzed their effect over time as the failure rate goes down.</p>
 <p>There was also some extensive researching done leading up to identifying other highly critical metrics but there seems to be missing data about those metrics. Since there isn't enough detail about the dataset in this case study, some external researching was required to get an understanding.</p>
 <p>Using provided data, we predicted over 77% of possible failure, but this can be improved further.</p>
 <hr>
-<h4 id="Some-recommended-actions-and-improvements:">Some recommended actions and improvements:<a class="anchor-link" href="#Some-recommended-actions-and-improvements:">&#182;</a></h4><ol>
+<h3 id="Recommended-actions-and-improvements:">Recommended actions and improvements:<a class="anchor-link" href="#Recommended-actions-and-improvements:">&#182;</a></h3><ol>
 <li>Realistically, since not all Hard Drives are manufactured and used under the same roof it’s a good idea that for future predictions, we use the critical attributes, mentioned above to analyze their effect on per hard drive model instead of a general prediction.</li>
 <li>Including more data source: 
 a.  Using more than one source of information such as operating temperature, throughput, of reads and writes etc. can help build a more robust collection of data that can predict future.</li>
